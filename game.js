@@ -11,6 +11,20 @@ $(".btn").click(function()
     animatePress(userChosenColour);
 });
 
+var level = 0;
+
+var gameStart = false;
+
+$(document).keypress(function()
+{
+    if(!started)
+    {
+        $("#level-title").text("Level " + level);
+        nextSequence();
+        gameStart = true;
+    }
+})
+
 function nextSequence()
 {
     var randomNumber  = Math.floor(Math.random() * 4);
@@ -18,6 +32,9 @@ function nextSequence()
     gamePattern.push(randomChosenColour);
     $("#" + randomChosenColour).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
     playSound(randomChosenColour);
+    level++;
+    $("#level-title").text("Level " + level);
+
 
 }
 
